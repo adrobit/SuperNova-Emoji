@@ -1,17 +1,5 @@
 /*
- * Copyright 2016 Hani Al Momani
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Copyright (c) 2016 Adrobit Technologies LLP
  */
 
 package hani.momanii.supernova_emoji_library.Helper;
@@ -31,12 +19,18 @@ import hani.momanii.supernova_emoji_library.R;
 
 
 public final class EmojiconHandler {
-    private EmojiconHandler() {
-    }
-
     private static final SparseIntArray sEmojisMap = new SparseIntArray(1029);
     private static final SparseIntArray sSoftbanksMap = new SparseIntArray(471);
+    private static final SparseIntArray sEmojiModifiersMap = new SparseIntArray(5);
     private static Map<String, Integer> sEmojisModifiedMap = new HashMap<>();
+
+    static {
+        sEmojiModifiersMap.put(0x1f3fb, 1);
+        sEmojiModifiersMap.put(0x1f3fc, 1);
+        sEmojiModifiersMap.put(0x1f3fd, 1);
+        sEmojiModifiersMap.put(0x1f3fe, 1);
+        sEmojiModifiersMap.put(0x1f3ff, 1);
+    }
 
     static {
         // People
@@ -1058,6 +1052,9 @@ public final class EmojiconHandler {
 
     }
 
+    private EmojiconHandler() {
+    }
+
     private static boolean isSoftBankEmoji(char c) {
         return ((c >> 12) == 0xe);
     }
@@ -1191,7 +1188,7 @@ public final class EmojiconHandler {
                         }
                         skip += followSkip;
 
-                    } else {
+                    } else if (sEmojiModifiersMap.get(followUnicode, 0) > 0) {
                         //handle other emoji modifiers
                         int followSkip = Character.charCount(followUnicode);
 

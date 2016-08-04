@@ -1,23 +1,12 @@
 /*
- * Copyright 2014 Hieu Rocker
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Copyright (c) 2016 Adrobit Technologies LLP
  */
 
 package hani.momanii.supernova_emoji_library.Helper;
 
 import android.content.Context;
 import android.widget.GridView;
+
 import hani.momanii.supernova_emoji_library.R;
 import hani.momanii.supernova_emoji_library.emoji.Emojicon;
 
@@ -26,19 +15,18 @@ import hani.momanii.supernova_emoji_library.emoji.Emojicon;
  * @author Daniele Ricci
  * @author Hani Al Momani (hani.momanii@gmail.com)
  */
-public class EmojiconRecentsGridView  extends EmojiconGridView implements EmojiconRecents {
+public class EmojiconRecentsGridView extends EmojiconGridView implements EmojiconRecents {
     EmojiAdapter mAdapter;
     private boolean mUseSystemDefault = false;
 
 
-
     public EmojiconRecentsGridView(Context context, Emojicon[] emojicons,
-                                   EmojiconRecents recents,EmojiconsPopup emojiconsPopup,boolean useSystemDefault) {
-        super(context, emojicons, recents, emojiconsPopup,useSystemDefault);
-        this.mUseSystemDefault=useSystemDefault;
+                                   EmojiconRecents recents, EmojiconsPopup emojiconsPopup, boolean useSystemDefault) {
+        super(context, emojicons, recents, emojiconsPopup, useSystemDefault);
+        this.mUseSystemDefault = useSystemDefault;
         EmojiconRecentsManager recents1 = EmojiconRecentsManager
                 .getInstance(rootView.getContext());
-        mAdapter = new EmojiAdapter(rootView.getContext(),  recents1,mUseSystemDefault);
+        mAdapter = new EmojiAdapter(rootView.getContext(), recents1, mUseSystemDefault);
         mAdapter.setEmojiClickListener(new OnEmojiconClickedListener() {
 
             @Override
